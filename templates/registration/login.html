@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block header %}
+     <nav class="navbar navbar-expand-lg navbar-dark bg-light border-bottom">
+            <div class="navbar">
+                <a class="navbar-brand text-dark ml-4" href="{% url 'home' %}" style="font-family: 'Oswald', sans-serif; font-size: 30px;">
+                    <img src="{% static 'images/medrt-brands.svg' %}" alt="..." class="" style="width: 75px">
+                    "Иммунитет"
+                </a>
+            </div>
+     </nav>
+{% endblock header %}
+
+{% block content %}
+    <div class="d-flex flex-column justify-content-center align-items-center" style="margin: 100px">
+
+        <div class="card" style="width: 400px">
+            <div class="card-header text-center">
+                Вход в аккаунт
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}">
+                    {{ form| crispy }}
+                    <button type="submit" class="btn btn-primary btn-block">Вход</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="pt-3" style="width: 400px">
+            <ul class="nav flex-column">
+                <li class="nav-item border-bottom">
+                    <a href="{% url 'registration' %}" class="nav-link">Регистрация</a>
+                </li >
+                <li class="nav-item  border-bottom">
+                    <a href="#" class="nav-link">Забыли пароль?</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'home' %}" class="nav-link">Вернутся на главную страницу</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% load static %}
+<head>
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Bootstrap icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+
+    <title>{% block title %}Иммунитет{% endblock title %}</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        {% block header %}
+            <nav class="navbar navbar-expand-lg navbar-dark bg-light border-bottom">
+            <div class="navbar">
+
+                <a class="navbar-brand text-dark ml-4" href="{% url 'home' %}" style="font-family: 'Oswald', sans-serif; font-size: 30px;">
+                    <img src="{% static 'images/medrt-brands.svg' %}" alt="..." class="" style="width: 75px">
+                    "Иммунитет"</a>
+            </div>
+
+              <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="m-1 nav-item">
+                        <a class="nav_link text-dark btn btn-light btn-lg btn-block" href="#">Профиль</a>
+                    </li>
+                    <li class="m-1 nav-item">
+                        <a class="nav_link text-dark btn btn-light btn-lg btn-block" href="#">Запись к врачу</a>
+                    </li>
+
+                </ul>
+
+                <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                    <li class="d-flex m-1 nav-item mr-5">
+                        <div class="mt-1 dropdown show">
+                            <a class=" text-dark dropdown-toggle" href="#" role="button" id="dropdownMenuButton"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                               style="text-decoration: none">
+                                <span class="text-dark h5">{{ user.name }} {{ user.last_name }}</span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{% url 'logout' %}">Выйти</a>
+                            </div>
+                        </div>
+                    </li>
+                {% else %}
+                    <li class="m-1 nav-item">
+                        <a class="nav_link text-white btn btn-danger btn-lg btn-block" href="{% url 'login' %}">Вход</a>
+                    </li>
+                    <li class="m-1 nav-item ">
+                        <a class="nav_link text-white btn btn-danger btn-lg btn-block" href="{% url 'registration' %}">Регистрация</a>
+                    </li>
+                {% endif %}
+                </ul>
+            </div>
+            </nav>
+        {% endblock header %}
+
+    </header>
+
+    <main role="main" class="container">
+    {% block content %}
+    {% endblock content %}
+    </main>
+
+    <!-- Footer -->
+<footer class="page-footer font-small mdb-color pt-4 bg-dark">
+
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left">
+
+    <!-- Footer links -->
+    <div class="row text-center text-md-left mt-3 pb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3 text-light">
+        <h6 class="text-uppercase mb-4 font-weight-bold">Иммунитет</h6>
+        <p>Сайт медицинских услуг</p>
+      </div>
+      <!-- Grid column -->
+
+      <hr class="w-100 clearfix d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3 text-light">
+        <h6 class="text-uppercase mb-4 font-weight-bold">Полезные ссылки</h6>
+          <div class="d-flex" >
+              <div class="mr-3">
+                  <p><a class="text-light" href="#!">Врачи</a></p>
+                  <p><a class="text-light" href="#!">Контакты</a></p>
+                  <p><a class="text-light" href="#!">Новости</a></p>
+              </div>
+              <div>
+                  <p><a class="text-light" href="#!">Профиль</a></p>
+                  <p><a class="text-light" href="#!">Вход</a></p>
+                  <p><a class="text-light" href="#!">Регистрация</a></p>
+              </div>
+          </div>
+
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="w-100 clearfix d-md-none">
+
+      <!-- Grid column -->
+      <hr class="w-100 clearfix d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+        <h6 class="text-uppercase mb-4 font-weight-bold text-light">Контакты</h6>
+        <p class="text-light"><i class="bi bi-geo-alt mr-1"></i> Большой пр., 16-а, Таганрог, Ростовская обл., 347930</p>
+        <p class="text-light"><i class="bi bi-telephone-fill mr-1"></i>+7 (863)-464-04-16</p>
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Footer links -->
+
+    <hr>
+
+    <!-- Grid row -->
+      <div class="row d-flex align-items-center pb-5"></div>
+
+</footer>
+<!-- Footer -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
