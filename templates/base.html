@@ -13,11 +13,13 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
-
-    <title>{% block title %}Иммунитет{% endblock title %}</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>{% block title %}Иммунитет{% endblock title %}</title>
 </head>
 <body>
     <header>
@@ -39,7 +41,7 @@
                         <a class="nav_link text-dark btn btn-light btn-lg btn-block" href="#">Профиль</a>
                     </li>
                     <li class="m-1 nav-item">
-                        <a class="nav_link text-dark btn btn-light btn-lg btn-block" href="#">Запись к врачу</a>
+                        <a class="nav_link text-dark btn btn-light btn-lg btn-block" href="{% url 'doctor_list' %}">Запись к врачу</a>
                     </li>
 
                 </ul>

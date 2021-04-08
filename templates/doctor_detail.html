@@ -1,10 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}{{ doctor.surname }} {{ doctor.name }} {{ doctor.last_name }}{% endblock title %}
+
+{% block content %}
+    <div class="container  border-left border-right">
+        <div class="d-flex p-3" style="'Raleway', sans-serif;">
+            <div>
+                <img class="border" src="{{ doctor.photo.url }}" alt="">
+            </div>
+            <div class="ml-2" style="font-family: 'Raleway', sans-serif;">
+                <div class="text-muted" style="font-size: 20px;">{{ doctor.specialization }}</div>
+                <div class="mb-2" style="font-size: 30px; font-weight: 500">{{ doctor.surname }} {{ doctor.name }} {{ doctor.last_name }}</div>
+                <div class="text-muted">Описание</div>
+                <div>{{ doctor.description }}</div>
+            </div>
+        </div>
+
+        <div class="p-3" style="font-family: 'Raleway', sans-serif;">
+            <div class="mb-2">
+                <div style="font-size: 20px; font-weight: 500">Образование</div>
+                <div>{{ doctor.education }}</div>
+            </div>
+            <div class="mb-2">
+                <div style="font-size: 20px; font-weight: 500">Курсы повышения квалификации</div>
+                {% for refresher_course in doctor.refresher_courses.all %}
+                    <div>{{ refresher_course.year_of_passage }} - {{ refresher_course.name_courses }}</div>
+                {% endfor %}
+            </div>
+            <div class="mb-2">
+                <div style="font-size: 20px; font-weight: 500">Опыт работы</div>
+                {% for work_experience in doctor.work_experiences.all %}
+                    <div>{{ work_experience.year_of_works }} - {{ work_experience.name_work }}</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
